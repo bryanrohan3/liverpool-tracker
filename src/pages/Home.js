@@ -26,7 +26,6 @@ function Home() {
         setLoading(false);
       });
   }, [teamId]);
-
   if (loading) {
     return <div>Loading...</div>;
   }
