@@ -11,6 +11,7 @@ const axiosInstance = axios.create({
 let tokenType = "X-Auth-Token";
 
 const getMatches = (teamId, token) => {
+  console.log("API Token:", token); // For debugging
   return axiosInstance.get(`teams/${teamId}/matches?status=SCHEDULED`, {
     headers: {
       [tokenType]: token,

@@ -5,6 +5,8 @@ import "../utils/flex.scss";
 import "../utils/margins.scss";
 
 const token = process.env.REACT_APP_API_KEY;
+console.log("PENV:", process.env); // Logs all environment variables to the console
+console.log("API Token:", token); // Debug: Check if the token is now accessible
 
 function Home() {
   const [matches, setMatches] = useState([]);
