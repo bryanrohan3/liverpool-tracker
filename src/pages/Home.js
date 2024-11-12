@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { endpoints } from "../helper/axiosHelper"; // Assuming axiosHelper.js is in the helper folder
+import { endpoints } from "../helper/axiosHelper";
 import "../utils/fonts.scss";
 import "../utils/flex.scss";
 import "../utils/margins.scss";
 
-// Assuming you're storing the API token in the .env file
-const token = process.env.REACT_APP_API_KEY; // Get the token from the .env file
+const token = process.env.REACT_APP_API_KEY;
 
 function Home() {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
-  const teamId = 64; // Example team ID (Liverpool)
+  const teamId = 64;
 
   useEffect(() => {
-    // Fetch matches for the specified team ID
     endpoints
-      .getMatches(teamId, token) // Pass the teamId and token directly
+      .getMatches(teamId, token)
       .then((response) => {
-        const fetchedMatches = response.data.matches; // Get the matches from the response
+        const fetchedMatches = response.data.matches;
         setMatches(fetchedMatches);
         setLoading(false);
       })
@@ -25,7 +23,7 @@ function Home() {
         console.error("Error fetching matches", error);
         setLoading(false);
       });
-  }, [teamId]); // Only use 'teamId' as a dependency (no need for 'token')
+  }, [teamId]);
 
   if (loading) {
     return <div>Loading...</div>;
