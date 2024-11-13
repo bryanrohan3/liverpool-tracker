@@ -46,3 +46,16 @@
 .full-stop {
   color: #f6eb61; /* Full stop color */
 }
+
+/* Example of error styling */
+.error-message {
+  color: red; /* Set the error text color to red */
+  font-size: 12px; /* Define the font size for error messages */
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Optionally, if you want to handle fs-12 specifically */
+.fs-12 {
+  font-size: 12px; /* Apply font size 12px */
+}

@@ -1,28 +1,35 @@
-import React, { useEffect } from "react";
+// Login.js
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { endpoints } from "../helper/axiosHelper"; // Import login endpoint
 import "../utils/buttons.scss";
 
 function Login() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-  // Lock scrolling when the Login component is rendered
   useEffect(() => {
-    // Check if the user is on mobile
     if (window.innerWidth <= 768) {
-      // Lock scrolling by adding a class to the body
       document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none"; // Disable touch actions like scrolling or zooming
+      document.body.style.touchAction = "none";
     }
-
-    // Clean up when the component is unmounted (or if the user navigates away)
     return () => {
       document.body.style.overflow = "";
       document.body.style.touchAction = "";
     };
-  }, []); // Empty dependency array ensures this effect runs only once
+  }, []);
 
-  const handleLoginClick = () => {
-    navigate("/home");
+  const handleLogin = async () => {
+    try {
+      const data = await endpoints.login(username, password);
+      localStorage.setItem("userToken", data.token); // Save token in localStorage
+      setError(null);
+      navigate("/home"); // Navigate to home on success
+    } catch (err) {
+      setError("Incorrect username or password.");
+    }
   };
 
   return (
@@ -32,16 +39,22 @@ function Login() {
         <span className="route">Route</span>
         <span className="full-stop">.</span>
       </p>
-      <input className="fs-14 input" type="text" placeholder="Username" />
+      <input
+        className="fs-14 input"
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
       <input
         className="fs-14 mt-10 input"
         type="password"
         placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <button
-        className="mt-30 button button--primary"
-        onClick={handleLoginClick}
-      >
+      {error && <p className="error-message fs-12">{error}</p>}{" "}
+      <button className="mt-30 button button--primary" onClick={handleLogin}>
         Login
       </button>
     </div>

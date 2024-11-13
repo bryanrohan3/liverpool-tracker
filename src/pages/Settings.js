@@ -1,13 +1,16 @@
 import React from "react";
-import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import "../utils/margins.scss";
+import "../utils/fonts.scss";
 
 function Settings() {
   const navigate = useNavigate(); // Initialize the navigate function
 
   const handleLogout = () => {
-    // Redirect to the home page (/)
+    // Remove the token from localStorage to log out the user
+    localStorage.removeItem("userToken");
+
+    // Redirect to the home page (login page)
     navigate("/");
   };
 
