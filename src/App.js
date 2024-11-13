@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
 import Settings from "./pages/Settings";
@@ -13,36 +8,31 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate login state
-  const navigate = useNavigate(); // For programmatic navigation
+  const [showNavbar, setShowNavbar] = useState(true);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true); // Mock login
-    navigate("/home"); // Redirect to home page after login
-  };
+  useEffect(() => {
+    // Check the current path and decide whether to show Navbar
+    if (window.location.pathname === "/") {
+      setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
+    }
+  }, []); // This runs once on initial render
 
-  return (
-    <div className="App">
-      {/* Conditionally render Navbar */}
-      {isLoggedIn && <Navbar />} {/* Only show Navbar if logged in */}
-      {/* Simulate login */}
-      {!isLoggedIn && <Login onLogin={handleLogin} />}{" "}
-      {/* Show login if not logged in */}
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/groups" element={<Groups />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-    </div>
-  );
-}
-
-function AppWrapper() {
   return (
     <Router>
-      <App />
+      <div className="App">
+        {/* Conditionally render Navbar based on the state */}
+        {showNavbar && <Navbar />}
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/groups" element={<Groups />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
 
-export default AppWrapper;
+export default App;
