@@ -15,7 +15,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  padding: 15px;
+  padding: 10px;
   transition: transform 0.3s ease;
 
   &:hover {
@@ -24,61 +24,78 @@
 
   .match-header {
     display: flex;
+    justify-content: space-between; /* Aligns logo/name to the left, date to the right */
     align-items: center;
-    gap: 10px;
     margin-bottom: 15px;
-    justify-content: space-between;
+  }
 
-    .competition-logo {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-    }
+  .competition-info {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Closer gap between the logo and the name */
+  }
 
-    h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 0;
-    }
+  .competition-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+
+  .competition-name {
+    font-size: 12px; /* Slightly larger font for the competition name */
+    font-weight: bold;
+    margin: 0;
+    margin-left: 10px;
+  }
+
+  .match-time {
+    font-size: 12px;
+    color: #555;
+    font-weight: bold;
+    text-align: right;
   }
 
   .match-body {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: center; /* Align time and teams horizontally */
+    gap: 15px; /* Add space between time and teams */
+    margin-bottom: 10px;
+  }
+
+  .match-time {
+    font-size: 10px;
+    font-weight: bold;
+    width: 50px; /* Set fixed width to keep time on the left */
+    text-align: left;
+    margin-left: 10px;
+  }
+
+  .match-time-left {
+    display: flex;
+    flex-direction: column; /* Stack teams vertically */
+    gap: 10px; /* Add space between teams */
 
     .team {
       display: flex;
       align-items: center;
       gap: 10px;
-
-      .team-logo {
-        width: 30px;
-        height: 30px;
-        object-fit: cover;
-      }
-
-      span {
-        font-size: 14px;
-        font-weight: bold;
-      }
     }
 
-    .match-time {
-      font-size: 14px;
-      color: #555;
+    .team-logo {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
-  }
 
-  .match-footer {
-    font-size: 14px;
-    color: #777;
+    span {
+      font-size: 12px;
+      font-weight: bold;
+    }
   }
 }
 
 .loading {
   text-align: center;
-  font-size: 18px;
+  font-size: 10px;
   color: #007aff;
 }

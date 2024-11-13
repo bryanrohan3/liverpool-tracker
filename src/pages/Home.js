@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../utils/Home.scss";
+import "../utils/fonts.scss";
 
 function Home() {
   const [matches, setMatches] = useState([]);
@@ -18,34 +20,71 @@ function Home() {
       });
   }, []);
 
+  // Format date into DD.MM.YY
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = String(date.getFullYear()).slice(-2);
+    return `${day}.${month}.${year}`;
+  };
+
+  // Format time into HH:mm
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div>
+    <div className="home">
       <p className="h1 text-center mt-30">Upcoming Matches</p>
-      <div>
+      <div className="match-list">
         {matches.length === 0 ? (
           <p className="text-center mt-30 fs-12">No upcoming matches found.</p>
         ) : (
-          <ul>
-            {matches.map((match) => (
-              <li key={match.id}>
-                <div>
-                  <h3>{match.competition.name}</h3>
+          matches.map((match) => (
+            <div className="match-card" key={match.id}>
+              <div className="match-header">
+                <div className="competition-info">
                   <img
                     src={match.competition.emblem}
                     alt="competition emblem"
+                    className="competition-logo"
                   />
-                  <p>
-                    {match.homeTeam.name} vs {match.awayTeam.name}
-                  </p>
-                  <p>Date: {new Date(match.utcDate).toLocaleString()}</p>
+                  <h3 className="competition-name">{match.competition.name}</h3>
                 </div>
-              </li>
-            ))}
-          </ul>
+                <div className="match-time">{formatDate(match.utcDate)}</div>
+              </div>
+
+              <div className="match-body">
+                <p className="match-time">{formatTime(match.utcDate)}</p>
+                <div className="match-time-left">
+                  <div className="team home-team">
+                    <img
+                      src={match.homeTeam.crest}
+                      alt={match.homeTeam.name}
+                      className="team-logo"
+                    />
+                    <span>{match.homeTeam.name}</span>
+                  </div>
+                  <div className="team away-team">
+                    <img
+                      src={match.awayTeam.crest}
+                      alt={match.awayTeam.name}
+                      className="team-logo"
+                    />
+                    <span>{match.awayTeam.name}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>
