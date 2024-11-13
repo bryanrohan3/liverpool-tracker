@@ -1,0 +1,30 @@
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Primary button style */
+.button--primary {
+  background-color: #c8102e; /* Primary color */
+  color: white;
+}
+
+.button--primary:hover {
+  background-color: #008b8b; /* Darker shade on hover */
+}
+
+/* Secondary button style */
+.button--secondary {
+  background-color: #f6eb61; /* Secondary color */
+  color: #333;
+  font-size: 14px; /* Smaller font size */
+}
+
+.button--secondary:hover {
+  background-color: #e3d14b; /* Darker yellow on hover */
+}
