@@ -37,6 +37,11 @@ function Home() {
     return `${hours}:${minutes}`;
   };
 
+  // Function to handle match card click and log match id
+  const handleMatchClick = (matchId) => {
+    console.log("Clicked on match with ID:", matchId);
+  };
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
@@ -49,7 +54,11 @@ function Home() {
           <p className="text-center mt-30 fs-12">No upcoming matches found.</p>
         ) : (
           matches.map((match) => (
-            <div className="match-card" key={match.id}>
+            <div
+              className="match-card"
+              key={match.id}
+              onClick={() => handleMatchClick(match.id)} // Add onClick handler
+            >
               <div className="match-header">
                 <div className="competition-info">
                   <img

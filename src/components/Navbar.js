@@ -32,7 +32,7 @@ function Navbar() {
             onClick={() => handleLinkClick("groups")}
           >
             <FaUsers className="navbar__icon" />
-            <span className="navbar__text">Groups</span>
+            <span className="navbar__text">Friends</span>
           </Link>
         </li>
         <li className="navbar__item">

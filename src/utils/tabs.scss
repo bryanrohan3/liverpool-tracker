@@ -1,0 +1,73 @@
+/* Tabs */
+.tabs {
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+
+/* Tab Buttons Container */
+.tab-buttons {
+  display: flex;
+  justify-content: center; /* Center the tabs */
+  gap: 15px; /* Add space between buttons */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Tab Button Styles */
+.tab-button {
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #b0b0b0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.tab-button:hover {
+  color: #eb5a58; /* Hover color */
+}
+
+.tab-button.active {
+  color: #eb5a58; /* Active tab color */
+  font-weight: 600;
+}
+
+.tab-button::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: #eb5a58;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.3s ease;
+}
+
+.tab-button.active::after {
+  transform: scaleX(1);
+}
+
+/* Input Search Styling */
+.input-search {
+  width: 85%; /* Adjust to fit nicely in mobile view */
+  max-width: 400px; /* Cap width for larger screens */
+  padding: 8px 12px;
+  margin-top: 10px;
+  border: 1px solid white;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0px;
+  background-color: white;
+}
+
+/* Tab Content */
+.tab-content {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
