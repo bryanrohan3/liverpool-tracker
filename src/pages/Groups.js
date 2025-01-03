@@ -47,12 +47,12 @@ function Groups() {
         )}
         {activeTab === "Requests" && (
           <div>
-            <p className="text-center">You have no pending requests.</p>
+            <p className="text-center mt-30">You have no pending requests.</p>
           </div>
         )}
         {activeTab === "Friends" && (
           <div>
-            <p className="text-center">Your friends list is empty.</p>
+            <p className="text-center mt-30">Your friends list is empty.</p>
           </div>
         )}
       </div>

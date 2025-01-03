@@ -1,0 +1,19 @@
+[
+  { "code": "DUB", "name": "Dublin" },
+  { "code": "BFS", "name": "Belfast" },
+  { "code": "STN", "name": "London Stansted" },
+  { "code": "MAN", "name": "Manchester" },
+  { "code": "BRS", "name": "Bristol" },
+  { "code": "LHR", "name": "London Heathrow" },
+  { "code": "LGW", "name": "London Gatwick" },
+  { "code": "LCY", "name": "London City" },
+  { "code": "LPL", "name": "Liverpool John Lennon" },
+  { "code": "BHM", "name": "Birmingham" },
+  { "code": "NCL", "name": "Newcastle" },
+  { "code": "EDI", "name": "Edinburgh" },
+  { "code": "GLA", "name": "Glasgow" },
+  { "code": "CWL", "name": "Cardiff" },
+  { "code": "BRS", "name": "Bristol" },
+  { "code": "SNN", "name": "Shannon" },
+  { "code": "ORK", "name": "Cork" }
+]

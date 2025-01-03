@@ -5,6 +5,7 @@ import Groups from "./pages/Groups";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
+import GameDetails from "./pages/GameDetails";
 import "./App.css";
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
         <Route
           path="/settings"
           element={isLoggedIn ? <Settings /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/game/:id"
+          element={isLoggedIn ? <GameDetails /> : <Navigate to="/" />}
         />
       </Routes>
     </div>

@@ -1,0 +1,195 @@
+@import "buttons.scss";
+@import "flex.scss";
+@import "fonts.scss";
+@import "tabs.scss";
+@import "margins.scss";
+
+.add-flights__header {
+  margin-bottom: 20px;
+}
+
+.add-flights__header .h1 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+.add-flights__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-flights__form select,
+.add-flights__form input {
+  width: 90%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+
+.add-flights__form select {
+  background-color: #fff;
+}
+
+.add-flights__form select:focus,
+.add-flights__form input:focus {
+  border-color: #c8102e; /* Ryanair's red */
+}
+
+.add-flights__form .route {
+  color: #00b2a9;
+}
+
+.add-flights__form .full-stop {
+  color: #c8102e;
+}
+
+.add-flights__form .input {
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.add-flights__button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.add-flights__button-container .button--primary {
+  width: 80%;
+  padding: 12px;
+  background-color: #c8102e; /* Ryanair's red */
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add-flights__button-container .button--primary:hover {
+  background-color: #a60e2e;
+}
+
+.airline-selection {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.airline-item {
+  width: 130px; /* Increase the width of the item */
+  height: 65px; /* Increase the height of the item */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid transparent; /* No border by default */
+  transition: border 0.3s ease-in-out;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.airline-item.selected {
+  border: 2px solid var(--selected-airline-color); /* Dynamically set the border color */
+}
+
+.airline-item img {
+  width: 100%; /* Make the image take up the full width of its container */
+  height: auto; /* Maintain the aspect ratio */
+  object-fit: contain; /* Ensure the image fits inside the element */
+}
+
+.add-flights__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative; /* Make the form container relative to position the dropdowns correctly */
+}
+
+.from-to {
+  position: relative; /* Ensure the dropdowns are positioned relative to this container */
+}
+
+.suggestions {
+  position: absolute; /* Position the dropdown absolutely within the input container */
+  top: 100%; /* Position it directly below the input field */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10; /* Make sure it appears on top of other content */
+  padding: 5px 0;
+  margin: 5px 0 0;
+}
+
+.suggestions li {
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.suggestions li:nth-child(even) {
+  background-color: #f0f0f0; /* Shade of gray for every second item */
+}
+
+.suggestions li:hover {
+  background-color: #ddd; /* Highlight on hover */
+}
+
+/* new code */
+
+.add-flights__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative; /* This ensures positioning for the dropdowns */
+}
+
+.from-to {
+  position: relative; /* Ensure the dropdowns are positioned relative to this container */
+}
+
+.suggestions {
+  position: absolute; /* Position the dropdown absolutely within the input container */
+  top: 100%; /* Position it directly below the input field */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10; /* Make sure it appears on top of other content */
+  padding: 5px 0;
+  margin: 5px 0 0;
+}
+
+.suggestions li {
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.suggestions li:nth-child(even) {
+  background-color: #f0f0f0; /* Shade of gray for every second item */
+}
+
+.suggestions li:hover {
+  background-color: #ddd; /* Highlight on hover */
+}
+
+.input {
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+}

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../utils/Home.scss";
 import "../utils/fonts.scss";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Initialize navigat
 
   useEffect(() => {
     axios
@@ -39,7 +41,7 @@ function Home() {
 
   // Function to handle match card click and log match id
   const handleMatchClick = (matchId) => {
-    console.log("Clicked on match with ID:", matchId);
+    navigate(`/game/${matchId}`); // Navigate to the GameDetails page
   };
 
   if (loading) {

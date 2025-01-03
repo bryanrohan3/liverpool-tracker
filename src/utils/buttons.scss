@@ -1,21 +1,18 @@
 .button {
-  padding: 7px 16px;
+  padding: 10px 18px;
   border: none;
   border-radius: 25px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-align: center; /* Ensure text is centered inside the button */
 }
 
 /* Primary button style */
 .button--primary {
   background-color: #c8102e; /* Primary color */
   color: white;
-}
-
-.button--primary:hover {
-  background-color: #008b8b; /* Darker shade on hover */
 }
 
 /* Secondary button style */
@@ -25,11 +22,15 @@
   font-size: 14px; /* Smaller font size */
 }
 
-.button--secondary:hover {
-  background-color: #e3d14b; /* Darker yellow on hover */
+.button--tertiary {
+  background-color: #ecebeb; /* Tertiary color */
+  color: #333;
 }
 
-.button--tertiary {
-  background-color: #ecebeb; /* Secondary color */
-  color: #333;
+/* To center the button in its container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Add spacing to the top */
 }

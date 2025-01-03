@@ -24,6 +24,10 @@ const getMatches = (teamId, token) => {
   });
 };
 
+const getMatchDetails = async (matchId) => {
+  return await axios.get(`http://127.0.0.1:8000/api/proxy/matches/${matchId}`);
+};
+
 // Login function
 const login = async (username, password) => {
   try {
@@ -37,6 +41,7 @@ const login = async (username, password) => {
 const endpoints = {
   getMatches,
   login,
+  getMatchDetails,
 };
 
 export { footballAxios, userAxios, endpoints };
