@@ -15,6 +15,7 @@ function AddFlights() {
   const [time, setTime] = useState("");
   const [filteredFrom, setFilteredFrom] = useState([]);
   const [filteredTo, setFilteredTo] = useState([]);
+  const [isFlightAdded, setIsFlightAdded] = useState(false); // State to manage the feedback
 
   const getButtonColor = (airline) => {
     if (airline === "Ryanair") {
@@ -27,6 +28,14 @@ function AddFlights() {
 
   const handleAddFlight = () => {
     console.log({ flightType, airline, from, to, date, time });
+
+    // Show feedback
+    setIsFlightAdded(true);
+
+    // Reset feedback after 2 seconds
+    setTimeout(() => {
+      setIsFlightAdded(false);
+    }, 1000);
   };
 
   // Debounced search function for From and To fields
@@ -165,9 +174,11 @@ function AddFlights() {
         <button
           className="button button--primary"
           onClick={handleAddFlight}
-          style={{ backgroundColor: getButtonColor(airline) }}
+          style={{
+            backgroundColor: isFlightAdded ? "green" : getButtonColor(airline),
+          }}
         >
-          Add Flights
+          {isFlightAdded ? "Flight Added" : "Add Flights"}
         </button>
       </div>
     </div>
