@@ -24,42 +24,42 @@ function Settings() {
       <div>
         {/* First Name */}
         <input
-          className="fs-14 ml-30 input"
+          className="fs-14 ml-30 login-input"
           type="text"
           placeholder="First Name"
         />
 
         {/* Last Name */}
         <input
-          className="fs-14 ml-30 mt-10 input"
+          className="fs-14 ml-30 mt-10 login-input"
           type="text"
           placeholder="Last Name"
         />
 
         {/* Username */}
         <input
-          className="fs-14 ml-30 mt-10 input"
+          className="fs-14 ml-30 mt-10 login-input"
           type="text"
           placeholder="Username"
         />
 
         {/* Email */}
         <input
-          className="fs-14 ml-30 mt-10 input"
+          className="fs-14 ml-30 mt-10 login-input"
           type="email"
           placeholder="Email"
         />
 
         {/* Password */}
         <input
-          className="fs-14 ml-30 mt-10 input"
+          className="fs-14 ml-30 mt-10 login-input"
           type="password"
           placeholder="Password"
         />
 
         {/* Confirm Password */}
         <input
-          className="fs-14 ml-30 mt-10 input"
+          className="fs-14 ml-30 mt-10 login-input"
           type="password"
           placeholder="Confirm Password"
         />

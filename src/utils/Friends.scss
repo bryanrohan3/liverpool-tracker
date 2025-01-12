@@ -1,0 +1,29 @@
+.suggestion-secondary {
+  position: absolute;
+  top: 100%; /* Position it directly below the input field */
+  left: 30px;
+  width: 85%;
+  background-color: white;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10; /* Ensure it's above other content */
+  padding: 5px 0;
+  margin-top: 0px;
+}
+
+.suggestion-secondary li {
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suggestion-secondary li:nth-child(even) {
+  background-color: #f0f0f0; /* Shade of gray for every second item */
+}
+
+.suggestion-secondary li:hover {
+  background-color: #ddd; /* Highlight on hover */
+}

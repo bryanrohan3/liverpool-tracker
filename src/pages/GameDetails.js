@@ -12,6 +12,7 @@ function GameDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [attending, setAttending] = useState(false); // Track attendance status
+  const [message, setMessage] = useState(""); // Display confirmation message
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -45,6 +46,12 @@ function GameDetails() {
 
   const handleAttendance = () => {
     setAttending(!attending); // Toggle attendance state
+    setMessage(
+      !attending
+        ? "You are now attending this match! 🎉"
+        : "You are no longer attending this match."
+    );
+    setTimeout(() => setMessage(""), 3000); // Clear message after 3 seconds
   };
 
   if (loading) {
@@ -130,9 +137,12 @@ function GameDetails() {
           }`}
           onClick={handleAttendance}
         >
-          {attending ? "Not Attending" : "Attend"}
+          {attending ? "Unattend" : "Attend"}
         </button>
       </div>
+
+      {/* Display confirmation message */}
+      {message && <p className="attendance-confirmation">{message}</p>}
 
       {/* Tabs Component placed below the match card */}
       <Tabs tabs={tabs} />

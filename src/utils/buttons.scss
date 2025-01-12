@@ -34,3 +34,13 @@
   align-items: center;
   margin-top: 20px; /* Add spacing to the top */
 }
+
+/* Confirmation message */
+.attendance-confirmation {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #28a745; /* Green for positive feedback */
+  font-weight: 500; /* Slightly bolder for visibility */
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in effect */
+}

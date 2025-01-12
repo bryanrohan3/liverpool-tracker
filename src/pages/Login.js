@@ -40,14 +40,14 @@ function Login() {
         <span className="full-stop">.</span>
       </p>
       <input
-        className="fs-14 input"
+        className="fs-14 login-input"
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
-        className="fs-14 mt-10 input"
+        className="fs-14 mt-10 login-input"
         type="password"
         placeholder="Password"
         value={password}

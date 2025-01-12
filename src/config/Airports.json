@@ -13,7 +13,6 @@
   { "code": "EDI", "name": "Edinburgh" },
   { "code": "GLA", "name": "Glasgow" },
   { "code": "CWL", "name": "Cardiff" },
-  { "code": "BRS", "name": "Bristol" },
   { "code": "SNN", "name": "Shannon" },
   { "code": "ORK", "name": "Cork" }
 ]

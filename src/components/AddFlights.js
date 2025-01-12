@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { debounce } from "lodash";
 import "../utils/AddFlights.scss";
 import "../utils/margins.scss";
@@ -15,7 +15,8 @@ function AddFlights() {
   const [time, setTime] = useState("");
   const [filteredFrom, setFilteredFrom] = useState([]);
   const [filteredTo, setFilteredTo] = useState([]);
-  const [isFlightAdded, setIsFlightAdded] = useState(false); // State to manage the feedback
+  const [isFlightAdded, setIsFlightAdded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getButtonColor = (airline) => {
     if (airline === "Ryanair") {
@@ -29,30 +30,29 @@ function AddFlights() {
   const handleAddFlight = () => {
     console.log({ flightType, airline, from, to, date, time });
 
-    // Show feedback
-    setIsFlightAdded(true);
+    setIsLoading(true); // Start the loading state
 
-    // Reset feedback after 2 seconds
+    // Simulate the process and update the UI
     setTimeout(() => {
-      setIsFlightAdded(false);
+      setIsLoading(false);
+      setIsFlightAdded(true);
+
+      // Reset after 1.5 seconds
+      setTimeout(() => {
+        setIsFlightAdded(false);
+      }, 1500);
     }, 1000);
   };
 
-  // Debounced search function for From and To fields
-  const handleSearch = (searchTerm, type) => {
+  const debouncedSearch = debounce((searchTerm, type) => {
     const filteredAirports = airportsData.filter((airport) =>
       airport.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     if (type === "from") {
       setFilteredFrom(filteredAirports);
     } else {
       setFilteredTo(filteredAirports);
     }
-  };
-
-  const debouncedSearch = debounce((searchTerm, type) => {
-    handleSearch(searchTerm, type);
   }, 500);
 
   const handleFromChange = (e) => {
@@ -68,10 +68,10 @@ function AddFlights() {
   const handleSelection = (airport, type) => {
     if (type === "from") {
       setFrom(airport.name);
-      setFilteredFrom([]); // Hide suggestions after selection
+      setFilteredFrom([]);
     } else {
       setTo(airport.name);
-      setFilteredTo([]); // Hide suggestions after selection
+      setFilteredTo([]);
     }
   };
 
@@ -172,13 +172,21 @@ function AddFlights() {
 
       <div className="add-flights__button-container">
         <button
-          className="button button--primary"
+          className={`button button--primary ${isLoading ? "loading" : ""}`}
           onClick={handleAddFlight}
           style={{
-            backgroundColor: isFlightAdded ? "green" : getButtonColor(airline),
+            backgroundColor: isFlightAdded
+              ? "#4CAF50"
+              : getButtonColor(airline),
           }}
         >
-          {isFlightAdded ? "Flight Added" : "Add Flights"}
+          {isLoading ? (
+            <span className="spinner"></span>
+          ) : isFlightAdded ? (
+            "Flight Added"
+          ) : (
+            "Add Flights"
+          )}
         </button>
       </div>
     </div>
