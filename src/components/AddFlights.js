@@ -175,6 +175,7 @@ function AddFlights() {
           className={`button button--primary ${isLoading ? "loading" : ""}`}
           onClick={handleAddFlight}
           style={{
+            marginBottom: "150px",
             backgroundColor: isFlightAdded
               ? "#4CAF50"
               : getButtonColor(airline),
