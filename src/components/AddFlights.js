@@ -170,7 +170,7 @@ function AddFlights() {
         </div>
       </div>
 
-      <div className="add-flights__button-container">
+      <div className="add-flights__button-container mb-150">
         <button
           className={`button button--primary ${isLoading ? "loading" : ""}`}
           onClick={handleAddFlight}

@@ -1,5 +1,6 @@
 [
   { "code": "DUB", "name": "Dublin" },
+  { "code": "KNO", "name": "Knock" },
   { "code": "BFS", "name": "Belfast" },
   { "code": "STN", "name": "London Stansted" },
   { "code": "MAN", "name": "Manchester" },

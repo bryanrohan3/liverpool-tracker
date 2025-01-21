@@ -53,15 +53,16 @@ function Signup() {
     }
     try {
       const { firstName, lastName, username, email, password } = formData;
+      // Make sure the keys match the backend field names
       await endpoints.signup({
-        firstName,
-        lastName,
+        first_name: firstName, // Change to 'first_name'
+        last_name: lastName, // Change to 'last_name'
         username,
         email,
         password,
       });
       setError(null);
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       setError("Error signing up. Please try again.");
     }
