@@ -1,8 +1,8 @@
-@import "buttons.scss";
-@import "flex.scss";
-@import "fonts.scss";
-@import "tabs.scss";
-@import "margins.scss";
+// @import "buttons.scss";
+// @import "flex.scss";
+// @import "fonts.scss";
+// @import "tabs.scss";
+// @import "margins.scss";
 
 .add-flights__header {
   margin-bottom: 20px;
@@ -95,7 +95,7 @@
 }
 
 .airline-item.selected {
-  border: 2px solid var(--selected-airline-color); /* Dynamically set the border color */
+  border: 1.5px solid var(--selected-airline-color); /* Dynamically set the border color */
 }
 
 .airline-item img {

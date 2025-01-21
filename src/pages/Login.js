@@ -1,8 +1,8 @@
-// Login.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { endpoints } from "../helper/axiosHelper"; // Import login endpoint
 import "../utils/buttons.scss";
+import "../utils/fonts.scss";
 
 function Login() {
   const navigate = useNavigate();
@@ -24,12 +24,16 @@ function Login() {
   const handleLogin = async () => {
     try {
       const data = await endpoints.login(username, password);
-      localStorage.setItem("userToken", data.token); // Save token in localStorage
+      localStorage.setItem("userToken", data.token);
       setError(null);
-      navigate("/home"); // Navigate to home on success
+      navigate("/home");
     } catch (err) {
       setError("Incorrect username or password.");
     }
+  };
+
+  const handleSignupRedirect = () => {
+    navigate("/signup"); // Redirect to the signup page
   };
 
   return (
@@ -53,10 +57,19 @@ function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {error && <p className="error-message fs-12">{error}</p>}{" "}
-      <button className="mt-30 button button--primary" onClick={handleLogin}>
+      {error && <p className="error-message fs-12">{error}</p>}
+      <button
+        className="mt-30 button button--primary fw-400"
+        onClick={handleLogin}
+      >
         Login
       </button>
+      <p className="mt-20 fs-14">
+        Don't have an account?{" "}
+        <button className="button button--link" onClick={handleSignupRedirect}>
+          Sign Up
+        </button>
+      </p>
     </div>
   );
 }

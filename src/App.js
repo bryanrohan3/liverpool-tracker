@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Groups from "./pages/Groups";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
+import Signup from "./pages/SignUp";
 import Navbar from "./components/Navbar";
 import GameDetails from "./pages/GameDetails";
 import "./App.css";
@@ -16,7 +17,7 @@ function App() {
 
   useEffect(() => {
     // Show or hide the Navbar based on the route
-    if (location.pathname === "/") {
+    if (location.pathname === "/" || location.pathname === "/signup") {
       setShowNavbar(false);
     } else {
       setShowNavbar(true);
@@ -28,6 +29,7 @@ function App() {
       {showNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route
           path="/home"
           element={isLoggedIn ? <Home /> : <Navigate to="/" />}

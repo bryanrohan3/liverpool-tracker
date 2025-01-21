@@ -11,8 +11,10 @@
 
 /* Primary button style */
 .button--primary {
-  background-color: #c8102e; /* Primary color */
-  color: white;
+  background-color: transparent;
+  border: 1px solid #c8102e;
+  width: 65%;
+  color: #c8102e;
 }
 
 /* Secondary button style */
