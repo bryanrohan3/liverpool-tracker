@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { endpoints } from "../helper/axiosHelper"; // Import login endpoint
+import { endpoints } from "../helper/axiosHelper"; // Import the endpoints object
 import "../utils/buttons.scss";
 import "../utils/fonts.scss";
 
@@ -23,12 +23,18 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const data = await endpoints.login(username, password);
-      localStorage.setItem("userToken", data.token);
-      setError(null);
-      navigate("/home");
+      const data = await endpoints.login(username, password); // Use the endpoints.login method
+      if (data.token) {
+        localStorage.setItem("userToken", data.token); // Store the token
+        console.log("User data:", data.user); // Log user details
+        setError(null);
+        navigate("/home"); // Navigate to /home
+      } else {
+        throw new Error("No token received");
+      }
     } catch (err) {
       setError("Incorrect username or password.");
+      console.error(err);
     }
   };
 
