@@ -33,7 +33,9 @@ function GameDetails() {
     const fetchMatchDetails = async () => {
       try {
         const response = await endpoints.getMatchDetails(id);
-        setMatchDetails(response.data);
+
+        // Set the match details directly
+        setMatchDetails(response); // Set the entire response as matchDetails
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch match details.");

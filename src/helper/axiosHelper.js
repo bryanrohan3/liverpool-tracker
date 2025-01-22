@@ -71,9 +71,7 @@ const getMatches = async (teamId, token) => {
 
 const getMatchDetails = async (matchId) => {
   try {
-    const response = await axios.get(
-      `${apiConstants.footballApi}matches/${matchId}`
-    );
+    const response = await userAxios.get(`proxy/matches/${matchId}/`); // Using the proxy
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : { error: "Network error" };
