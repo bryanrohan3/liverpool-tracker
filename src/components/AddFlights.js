@@ -7,7 +7,7 @@ import alImage from "../assets/al.png";
 import airportsData from "../config/Airports.json";
 
 function AddFlights() {
-  const [flightType, setFlightType] = useState("Single");
+  // const [flightType, setFlightType] = useState("Single");
   const [airline, setAirline] = useState("Ryanair");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -28,7 +28,7 @@ function AddFlights() {
   };
 
   const handleAddFlight = () => {
-    console.log({ flightType, airline, from, to, date, time });
+    // console.log({ flightType, airline, from, to, date, time });
 
     setIsLoading(true); // Start the loading state
 
@@ -170,7 +170,7 @@ function AddFlights() {
         </div>
       </div>
 
-      <div className="add-flights__button-container mb-150">
+      <div className="add-flights__button-container">
         <button
           className={`button button--primary ${isLoading ? "loading" : ""}`}
           onClick={handleAddFlight}
