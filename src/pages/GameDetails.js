@@ -12,6 +12,7 @@ function GameDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [attending, setAttending] = useState(false); // Track attendance status
+  const [lookingForTicket, setLookingForTicket] = useState(false); // Track ticket search status
   const [message, setMessage] = useState(""); // Display confirmation message
 
   const formatDate = (dateString) => {
@@ -52,6 +53,16 @@ function GameDetails() {
       !attending
         ? "You are now attending this match! 🎉"
         : "You are no longer attending this match."
+    );
+    setTimeout(() => setMessage(""), 3000); // Clear message after 3 seconds
+  };
+
+  const handleTicketSearch = () => {
+    setLookingForTicket(!lookingForTicket); // Toggle ticket search state
+    setMessage(
+      !lookingForTicket
+        ? "You are now looking for a ticket."
+        : "You are no longer looking for a ticket."
     );
     setTimeout(() => setMessage(""), 3000); // Clear message after 3 seconds
   };
@@ -131,15 +142,23 @@ function GameDetails() {
         </div>
       </div>
 
-      {/* Add attendance button */}
-      <div className="button-container">
+      <div className="button-container flex-row gap-10 align-center">
         <button
           className={`button ${
-            attending ? "button--secondary" : "button--primary"
+            attending ? "button--primary" : "button--primary"
           }`}
           onClick={handleAttendance}
         >
           {attending ? "Unattend" : "Attend"}
+        </button>
+
+        <button
+          className={`button ml-10 ${
+            lookingForTicket ? "button--primary" : "button--primary"
+          }`}
+          onClick={handleTicketSearch}
+        >
+          {lookingForTicket ? "Ticket Sorted" : "Need Ticket"}
         </button>
       </div>
 

@@ -7,12 +7,14 @@ import alImage from "../assets/al.png";
 import airportsData from "../config/Airports.json";
 
 function AddFlights() {
-  // const [flightType, setFlightType] = useState("Single");
   const [airline, setAirline] = useState("Ryanair");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [returnFlight, setReturnFlight] = useState(false); // New state for return flight
+  const [returnDate, setReturnDate] = useState(""); // New state for return flight date
+  const [returnTime, setReturnTime] = useState(""); // New state for return flight time
   const [filteredFrom, setFilteredFrom] = useState([]);
   const [filteredTo, setFilteredTo] = useState([]);
   const [isFlightAdded, setIsFlightAdded] = useState(false);
@@ -28,16 +30,12 @@ function AddFlights() {
   };
 
   const handleAddFlight = () => {
-    // console.log({ flightType, airline, from, to, date, time });
+    setIsLoading(true);
 
-    setIsLoading(true); // Start the loading state
-
-    // Simulate the process and update the UI
     setTimeout(() => {
       setIsLoading(false);
       setIsFlightAdded(true);
 
-      // Reset after 1.5 seconds
       setTimeout(() => {
         setIsFlightAdded(false);
       }, 1500);
@@ -97,6 +95,21 @@ function AddFlights() {
           >
             <img src={alImage} alt="Aer Lingus" />
           </div>
+        </div>
+
+        <div className="return-flight-toggle">
+          <button
+            className={`button ${returnFlight ? "button--selected" : ""}`}
+            onClick={() => setReturnFlight(true)}
+          >
+            Return
+          </button>
+          <button
+            className={`button ${!returnFlight ? "button--selected" : ""}`}
+            onClick={() => setReturnFlight(false)}
+          >
+            One Way
+          </button>
         </div>
 
         <div className="from-to">
@@ -168,6 +181,34 @@ function AddFlights() {
             />
           </label>
         </div>
+
+        {returnFlight && (
+          <div className="return-flight-details">
+            <div className="date">
+              <label>
+                Return Date
+                <input
+                  type="date"
+                  value={returnDate}
+                  onChange={(e) => setReturnDate(e.target.value)}
+                  className="input mt-10"
+                />
+              </label>
+            </div>
+
+            <div className="time  mt-10 ">
+              <label className="mt-10">
+                Return Time
+                <input
+                  type="time"
+                  value={returnTime}
+                  onChange={(e) => setReturnTime(e.target.value)}
+                  className="input mt-10"
+                />
+              </label>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="add-flights__button-container">
