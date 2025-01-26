@@ -97,19 +97,25 @@ function AddFlights() {
           </div>
         </div>
 
-        <div className="return-flight-toggle">
+        <div className="button-container flex-row">
+          {/* <div className="return-flight-toggle"> */}
           <button
-            className={`button ${returnFlight ? "button--selected" : ""}`}
-            onClick={() => setReturnFlight(true)}
-          >
-            Return
-          </button>
-          <button
-            className={`button ${!returnFlight ? "button--selected" : ""}`}
+            className={`button ${
+              !returnFlight ? "button--selected" : "button--non-selected"
+            }`}
             onClick={() => setReturnFlight(false)}
           >
             One Way
           </button>
+          <button
+            className={`button ml-10 ${
+              returnFlight ? "button--selected" : "button--non-selected"
+            }`}
+            onClick={() => setReturnFlight(true)}
+          >
+            Return
+          </button>
+          {/* </div> */}
         </div>
 
         <div className="from-to">

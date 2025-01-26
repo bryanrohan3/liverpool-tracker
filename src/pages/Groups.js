@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { userAxios } from "../helper/axiosHelper";
 import { debounce } from "lodash";
 import "../utils/tabs.scss";
-import "../utils/Friends.scss"; // Import the newly created Friends.scss file
+import "../utils/Friends.scss";
 
 function Groups() {
   const [activeTab, setActiveTab] = useState("Search");
@@ -10,7 +10,15 @@ function Groups() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedUser, setSelectedUser] = useState(null); // Store selected user for adding friend
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem("userToken");
+    if (!token) {
+      setError("You must log in to use this feature.");
+    }
+  }, []);
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
@@ -21,36 +29,40 @@ function Groups() {
       setUsers([]);
       return;
     }
+    console.log("Search Query:", query); // Log the search query
     setIsLoading(true);
     setError(null); // Reset error
     try {
-      const response = await userAxios.get(`?search=${query}`);
+      const response = await userAxios.get(`users/?search=${query}`);
+      console.log("Response Data:", response.data); // Log the response data
       setUsers(response.data);
     } catch (err) {
       setError("Failed to fetch users. Please try again.");
-      console.error("Error fetching users:", err);
+      console.error("Error fetching users:", err); // Log the error details
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Create a debounced version of fetchUsers with a 1-second delay
-  const debouncedFetchUsers = debounce(fetchUsers, 1000);
+  // Create debounced function wrapped with useCallback to prevent re-creating it on every render
+  const debouncedFetchUsers = useCallback(
+    debounce((query) => fetchUsers(query), 1000),
+    []
+  );
 
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-    debouncedFetchUsers(query); // Use the debounced function
+    debouncedFetchUsers(query); // Call the debounced version of fetchUsers
   };
 
   const handleUserClick = (user) => {
-    setSelectedUser(user); // Set the selected user for the "Add Friend" toggle
+    setSelectedUser(user);
   };
 
   const handleAddFriend = () => {
-    // Simulate adding a friend (this should be replaced by actual API call)
     console.log(`Friend request sent to ${selectedUser.username}`);
-    setSelectedUser(null); // Reset selected user after adding
+    setSelectedUser(null);
   };
 
   return (
@@ -81,24 +93,32 @@ function Groups() {
       <div className="tab-content">
         {activeTab === "Search" && (
           <div>
-            <input
-              className="fs-14 ml-30 login-input input-search"
-              type="text"
-              placeholder="Search by username..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-            {isLoading && <p className="text-center">Loading...</p>}
-            {error && <p className="error-text text-center">{error}</p>}
-            {/* Friend suggestions dropdown */}
-            {users.length > 0 && (
-              <ul className="suggestion-secondary">
-                {users.map((user) => (
-                  <li key={user.id} onClick={() => handleUserClick(user)}>
-                    {user.username} ({user.first_name} {user.last_name} )
-                  </li>
-                ))}
-              </ul>
+            {!error ? (
+              <>
+                <input
+                  className="fs-14 ml-30 login-input input-search"
+                  type="text"
+                  placeholder="Search by username..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+                {isLoading && <p className="text-center">Loading...</p>}
+                {users.length > 0 && (
+                  <ul className="suggestion-secondary">
+                    {users.map((user) => (
+                      <li
+                        key={user.id}
+                        onClick={() => handleUserClick(user)}
+                        className="pointer"
+                      >
+                        {user.username} ({user.first_name} {user.last_name})
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            ) : (
+              <p className="error-text text-center">{error}</p>
             )}
           </div>
         )}
